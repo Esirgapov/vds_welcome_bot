@@ -1,6 +1,5 @@
 .env
 
-index.py
 
 .mypy_cache/
 .vscode/

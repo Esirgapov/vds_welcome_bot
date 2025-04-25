@@ -1,8 +1,16 @@
 from aiogram import F, Router
 from aiogram.filters import Command, CommandStart
+from aiogram.filters.command import CommandObject
 from aiogram.types import Message
 
 router = Router()
+
+
+@router.message(F.text.startswith('/'), F.chat.type.in_({"group", "supergroup"}))
+async def block_commands_for_non_admins(message: Message, bot):
+    member = await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)
+    if member.status not in {"administrator", "creator"}:
+        await message.delete()
 
 
 @router.message(CommandStart())

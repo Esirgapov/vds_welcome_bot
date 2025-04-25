@@ -4,6 +4,12 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
+from aiogram.types import (
+    BotCommandScopeDefault,
+    BotCommandScopeAllPrivateChats,
+    BotCommandScopeAllGroupChats,
+    BotCommandScopeAllChatAdministrators
+)
 from config_data.config import Config, load_config
 from handlers import user_handlers
 
@@ -22,7 +28,10 @@ async def main():
     )
     dp = Dispatcher()
     dp.include_router(user_handlers.router)
-
+    await bot.delete_my_commands(scope=BotCommandScopeDefault())
+    await bot.delete_my_commands(scope=BotCommandScopeAllPrivateChats())
+    await bot.delete_my_commands(scope=BotCommandScopeAllGroupChats())
+    await bot.delete_my_commands(scope=BotCommandScopeAllChatAdministrators())    
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 

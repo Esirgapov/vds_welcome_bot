@@ -4,6 +4,9 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
+# from aiogram.types.chat_member import ChatMember
+# from aiogram.utils.chat_action import ChatActionSender
+
 from aiogram.types import (
     BotCommandScopeDefault,
     BotCommandScopeAllPrivateChats,

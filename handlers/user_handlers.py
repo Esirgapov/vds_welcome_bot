@@ -19,7 +19,7 @@ async def start_message(message: Message):
     await message.answer(
         text="I am Welcome Bot, that welcomes new members of the group!\n"
              "Here how it reacts to new members in the group: \n\n"
-             "Please welcome our newest amazing volunteer, (name)! (username) please tell us about yourself and add a pic. Thanks and welcome to our family😊🤗 \n\nWho added (name) to our big team?"
+             "Please welcome our newest amazing volunteer, (name)! (username) please send your photo and bio in the same message. Thanks and welcome to our family😊🤗 \n\nWho added (name) to our big team?"
     )
 
 @router.message(Command(commands='help'))
@@ -31,7 +31,7 @@ async def welcome_new_members(message: Message):
     for user in message.new_chat_members:
         name = user.full_name
         username = f"@{user.username}" if user.username else name
-        text = f"Please welcome our newest amazing volunteer, {name}! {username} please tell us about yourself and add a pic. Thanks and welcome to our family😊🤗 \n\nWho added {name} to our big team?"
+        text = f"Please welcome our newest amazing volunteer, {name}! {username} please send your photo and bio in the same message. Thanks and welcome to our family😊🤗 \n\nWho added {name} to our big team?"
         await message.answer(text)
 
 EXCEPTIONS = {}
